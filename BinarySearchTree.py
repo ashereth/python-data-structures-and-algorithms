@@ -54,14 +54,14 @@ class BinarySearchTree:
                 return True
         #return false if traversed the whole tree 
         return False
-    #find maximum depth of the tree using recursive depth first search
-    def max_depth(self, root):
-        #base case there is no node for subtree so its length is 0
-        if not root:
-            return 0
-        #if there is a root for subtree then depth is 1 plus maxdepth of
-        # its subtrees, each time it recurses it adds one 
-        return 1 + max(self.max_depth(root.left), self.max_depth(root.right))
+#find maximum depth of the tree using recursive depth first search
+def max_depth(root):
+    #base case there is no node for subtree so its length is 0
+    if not root:
+        return 0
+    #if there is a root for subtree then depth is 1 plus maxdepth of
+    # its subtrees, each time it recurses it adds one to the count 
+    return 1 + max(max_depth(root.left), max_depth(root.right))
 
 print("\n")
 tree = BinarySearchTree()
@@ -71,5 +71,5 @@ tree.insert(2)
 tree.insert(3)
 if tree.contains(3):
     print("yes")
-    print(tree.max_depth(tree.root))
+    print(max_depth(tree.root))
 print("\n")

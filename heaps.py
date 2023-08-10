@@ -76,6 +76,18 @@ def find_kth_smallest(nums, k):
     #return the item that is left on top of the heap
     return heap.remove()
 
+"""Write a function named stream_max that takes as its input a list
+ of integers (nums). The function should return a list of the same length, 
+ where each element in the output list is the maximum number seen so far in 
+ the input list.
+ If the input list is [1, 3, 2, 5, 4], the function should return [1, 3, 3, 5, 5]."""
+def stream_max(nums):
+    heap = MaxHeap()
+    maxs = []
+    for num in nums:
+        heap.insert(num)
+        maxs.append(heap.heap[0])
+    return maxs
 
     
 print('\n')

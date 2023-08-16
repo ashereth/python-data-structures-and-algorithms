@@ -79,7 +79,7 @@ def merge(list1, list2):
         combined.append(list2[j])
         j += 1
     return combined
-
+#merge sort does not sort in place, it creates a new sorted list
 def merge_sort(my_list):
     #if the list has 1 element just return that one element
     if len(my_list) == 1:

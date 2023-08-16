@@ -94,3 +94,9 @@ def merge_sort(my_list):
 
 array = [4,5,6,8,1,3,4,5,7,9,0]
 print('merge sort\n',merge_sort(array),'\n')
+
+def quick_sort(my_list):
+    pass
+
+array = [4,5,6,8,1,3,4,5,7,9,0]
+print('wuick sort\n',quick_sort(array),'\n')

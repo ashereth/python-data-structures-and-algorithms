@@ -228,6 +228,36 @@ class LinkedList:
     
         # Update the head of the list if necessary
         self.head = dummy.next
+    
+    #merge two LL into a sorted LL
+    def merge(self, other_list):
+        other_head = other_list.head
+        dummy = Node(0)
+        current = dummy
+        c1 = self.head
+        c2 = other_head
+        while c1 and c2:
+            if c1.value < c2.value:
+                current.next = c1
+                current = current.next
+                c1 = c1.next
+            else:
+                current.next = c2
+                current = current.next
+                c2 = c2.next
+        while c1:
+            current.next = c1
+            current = current.next
+            c1 = c1.next
+        while c2:
+            current.next = c2
+            current = current.next
+            c2 = c2.next
+        self.head = dummy.next
+        self.length += other_list.length
+        if self.tail.value < other_list.tail.value:
+            self.tail = other_list.tail
+        return
 
 #returns the node that is k away from the end
 def find_kth_from_end(ll, k):

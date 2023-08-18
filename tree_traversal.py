@@ -55,11 +55,68 @@ class BinarySearchTree:
             if current_node.right is not None:
                 queue.append(current_node.right)
         return results
+
+    #depth_first_search pre order
+    def dfs_pre_order(self):
+        results = []
+        def traverse(current_node):
+            results.append(current_node.value)
+            if current_node.left:
+                traverse(current_node.left)
+            if current_node.right:
+                traverse(current_node.right)
         
-
-
-
-    #depth_first_search
+        traverse(self.root)
+        return results
+    
+    #depth_first_search in order
+    def dfs_in_order(self):
+        results = []
+        def traverse(current_node):
+            if current_node.left:
+                traverse(current_node.left)
+            results.append(current_node.value)
+            if current_node.right:
+                traverse(current_node.right)
+        
+        traverse(self.root)
+        return results
+    
+    #depth_first_search post order
+    def dfs_post_order(self):
+        results = []
+        def traverse(current_node):
+            if current_node.left:
+                traverse(current_node.left)
+            if current_node.right:
+                traverse(current_node.right)
+            results.append(current_node.value)
+        
+        traverse(self.root)
+        return results
+    
+    #function for testing if a tree is a valid BST
+    def is_valid_bst(self):
+        results = self.dfs_in_order()
+        for i in range(len(results)-1):
+            if results[i] > results[i+1]:
+                return False
+        return True
+    
+    #method for finding the kth smallest Node
+    # not the greatest approach because it traverses the whole tree
+    def kth_smallest(self, k):
+        results = []
+        def traverse(node):
+            if node.left:
+                traverse(node.left)
+            results.append(node.value)
+            if node.right:
+                traverse(node.right)
+        traverse(self.root)
+        if k>len(results):
+            return None
+        return results.pop(k-1)
 
 
 bst = BinarySearchTree()
@@ -67,4 +124,8 @@ bst.insert(5)
 bst.insert(7)
 bst.insert(4)
 bst.insert(9)
-print('\n',bst.breadth_first_search(),'\n')
+print('\n','BFS',bst.breadth_first_search(),'\n')
+print('\n','DFS pre order',bst.dfs_pre_order(),'\n')
+print('\n','DFS in order',bst.dfs_in_order(),'\n')
+print('\n','DFS post order',bst.dfs_post_order(),'\n')
+print('\n','3rd smallest element =',bst.kth_smallest(3))
